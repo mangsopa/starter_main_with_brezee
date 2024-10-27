@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HumanResourcesController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RouteController;
@@ -28,14 +29,10 @@ Route::permanentRedirect('/', '/login');
 
 Route::group(['middleware' => ['web', 'auth', 'verified']], function () {
     Route::resource('dashboard', DashboardController::class)->only('index');
-    
-    Route::resource('employee', EmployeeController::class)->only('index', 'store', 'update', 'destroy');
-    Route::resource('user', UserManagementController::class)->only('index', 'store', 'update', 'destroy');
-    Route::prefix('employee')->group(function () {
-        Route::resource('profile', UserProfileController::class)->only('index');
-    });
-    Route::resource('setting', SettingController::class)->only('index', 'update');
 
+    Route::resource('user', UserManagementController::class)->only('index', 'store', 'update', 'destroy');
+
+    Route::resource('setting', SettingController::class)->only('index', 'update');
     Route::resource('route', RouteController::class)->only('index', 'store', 'update', 'destroy');
     Route::resource('role', RoleController::class)->only('index', 'store', 'update', 'destroy');
     Route::resource('permission', PermissionController::class)->only('index', 'store', 'update', 'destroy');
@@ -43,4 +40,14 @@ Route::group(['middleware' => ['web', 'auth', 'verified']], function () {
     Route::resource('menu', MenuGroupController::class)->only('index', 'store', 'update', 'destroy');
     Route::resource('menu.item', MenuItemController::class)->only('index', 'store', 'update', 'destroy');
 
+    Route::prefix('humanresources')->group(function () {
+        Route::resource('employee', HumanResourcesController::class)->only('index', 'update');
+    });
+
+    // Route::prefix('employee')->group(function () {
+    //     // Route::resource('profile', UserProfileController::class)->only('index');
+
+    //     Route::resource('employee', HumanResourcesController::class)->only('index');
+
+    // });
 });

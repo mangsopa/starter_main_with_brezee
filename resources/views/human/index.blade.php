@@ -66,7 +66,7 @@
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li>
                                         <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#modal-form-edit-permission-{{ $row->idpgw }}">
+                                            data-bs-target="#modal-form-edit-human-{{ $row->id }}">
                                             Edit
                                         </a>
                                     </li>
@@ -78,7 +78,7 @@
                                     </li>
                                 </ul>
 
-                                {{-- @include('components.form.modal.menu-group.edit') --}}
+                                @include('components.form.modal.human.edit')
                                 {{-- @include('components.form.modal.menu-group.delete') --}}
                             </div>
                         </td>

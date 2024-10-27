@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Route as FacadesRoute;
-use Spatie\Permission\Models\Permission;
+use App\Models\Employee;
+use App\Services\HumanService;
+use App\Http\Requests\Human\UpdateHumanEmployeeRequest;
 
-class EmployeeController extends Controller
+class HumanResourcesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,39 +21,35 @@ class EmployeeController extends Controller
                 ->orWhere('idpgw', 'like', '%' . $request->search . '%');
         })
         ->latest()
+        ->orderBy('idpgw')
         ->paginate(10);
-    // $roles = Role::orderBy('name')->get();
 
-    return view('employee.index', compact('employee'));
+    return view('human.index', compact('employee'));
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        return view('human.show');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function edit(string $id)
     {
-        //
+        return view('human.edit');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function update(UpdateHumanEmployeeRequest $request, Employee $employee, HumanService $humanservice)
+    {
+        return $humanservice->update($request, $employee)
+            ? back()->with('success', 'User has been updated successfully!')
+            : back()->with('failed', 'User was not updated successfully!');
+    }
+
     public function destroy(string $id)
     {
         //
