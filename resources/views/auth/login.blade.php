@@ -57,14 +57,6 @@
                                 <x-form.validation.error name="username" />
                             </div>
 
-                            <!-- <div class="input-group mb-3">
-                                <input type="hidden" class="form-control" id="username" placeholder="Enter username "
-                                    name="username" value="{{ old('username') }}" required
-                                    placeholder="username" autocomplete="username" autofocus>
-                                <span class="input-group-addon"><i class="zmdi zmdi-account-circle"></i></span>
-                                <x-form.validation.error name="username" />
-                            </div> -->
-
                             <div class="input-group mb-3">
                                 <input type="password" class="form-control pe-5" placeholder="Enter password"
                                     id="password-input" name="password" required placeholder="Password"
