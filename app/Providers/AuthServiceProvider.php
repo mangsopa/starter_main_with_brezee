@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +24,13 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Auth::viaRequest('md5', function ($request) {
+        //     $user = User::where('register', $request->register)->first();
+
+        //     if ($user && $user->password === md5($request->password)) {
+        //         return $user;
+        //     }
+        //     return null;
+        // });
     }
 }

@@ -14,12 +14,14 @@ class UserSeederTableSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
+            'register' => 'KD001',
             'username' => 'Sofa',
             'name' => 'Super Admin',
             'email' => 'superadmin@gmail.com',
         ]);
 
         User::factory()->create([
+            'register' => 'KD002',
             'username' => 'Anggit',
             'name' => 'User',
             'email' => 'user@gmail.com',

@@ -2,8 +2,9 @@
 
 @section('title', 'Menu Items')
 
-@section('breadcrumb')
-<x-dashboard.breadcrumb title="Menu Management" page="Menu Management" active="Item" route="{{ route('menu.index') }}" />
+@section('!breadcrumb')
+<x-dashboard.breadcrumb title="Menu Management" page="Menu Management" active="Item"
+    route="{{ route('menu.index') }}" />
 @endsection
 
 @section('content')
@@ -12,7 +13,8 @@
     <div class="card-header border-bottom-dashed align-items-center d-flex">
         <h4 class="card-title mb-0 flex-grow-1">Menu</h4>
         <div class="flex-shrink-0">
-            <button type="button" class="btn btn-soft-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-form-add-menu">
+            <button type="button" class="btn btn-soft-primary btn-sm" data-bs-toggle="modal"
+                data-bs-target="#modal-form-add-menu">
                 <i class="ri-add-line"></i>
                 Add
             </button>
@@ -33,49 +35,52 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($menuItems as $menuItem)
-            <tr>
-                <th scope="row">{{ $loop->iteration }}</th>
-                <td>{{ $menuItem->name }}</td>
-                <td>{{ $menuItem->icon }}</td>
-                <td>{{ $menuItem->route }}</td>
-                <td>{{ $menuItem->permission_name }}</td>
-                <td>
-                    @if ($menuItem->status)
-                    <span class="badge badge-soft-success">Show</span>
-                    @else
-                    <span class="badge badge-soft-danger">Hide</span>
-                    @endif
-                </td>
-                <td>
-                    <div class="dropdown">
-                        <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="ri-more-2-fill"></i>
-                        </a>
+            @forelse($menuItems as $menuItem)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $menuItem->name }}</td>
+                    <td>{{ $menuItem->icon }}</td>
+                    <td>{{ $menuItem->route }}</td>
+                    <td>{{ $menuItem->permission_name }}</td>
+                    <td>
+                        @if($menuItem->status)
+                            <span class="badge badge-soft-success">Show</span>
+                        @else
+                            <span class="badge badge-soft-danger">Hide</span>
+                        @endif
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="ri-more-2-fill"></i>
+                            </a>
 
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modal-form-edit-menu-{{ $menuItem->id }}">
-                                    Edit
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('modal-form-delete-menu-{{ $menuItem->id }}').submit()">
-                                    Delete
-                                </a>
-                            </li>
-                        </ul>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#modal-form-edit-menu-{{ $menuItem->id }}">
+                                        Edit
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#"
+                                        onclick="event.preventDefault(); document.getElementById('modal-form-delete-menu-{{ $menuItem->id }}').submit()">
+                                        Delete
+                                    </a>
+                                </li>
+                            </ul>
 
-                        @include('components.form.modal.menu-item.edit')
-                        @include('components.form.modal.menu-item.delete')
+                            @include('components.form.modal.menu-item.edit')
+                            @include('components.form.modal.menu-item.delete')
 
-                    </div>
-                </td>
-            </tr>
+                        </div>
+                    </td>
+                </tr>
             @empty
-            <tr>
-                <th colspan="5" class="text-center">No data to display</th>
-            </tr>
+                <tr>
+                    <th colspan="5" class="text-center">No data to display</th>
+                </tr>
             @endforelse
         </tbody>
     </table>

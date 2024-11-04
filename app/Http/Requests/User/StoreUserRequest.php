@@ -22,11 +22,13 @@ class StoreUserRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'register' => ['required', 'string'],
             'username' => ['required', 'string'],
             'name' => ['required', 'string'],
             'email' => ['required', 'string', 'email:rfc', 'unique:users'],
+            'password' => ['required', 'string'],
             'role' => ['nullable', 'string'],
-            'verified' => ['nullable', 'boolean'],
+            'email_verified_at' => ['nullable', 'boolean'],
         ];
     }
 }

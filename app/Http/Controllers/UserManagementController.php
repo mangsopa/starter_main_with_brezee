@@ -48,6 +48,8 @@ class UserManagementController extends Controller
         return $userService->create($request)
             ? back()->with('success', 'User has been created successfully!')
             : back()->with('failed', 'User was not created successfully!');
+
+        // dd($userService->create);
     }
 
     /**

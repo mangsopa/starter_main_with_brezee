@@ -13,6 +13,9 @@ class UserService
     return User::create(array_merge(
       $request->validated(),
       array(
+        'username' => $request->username,
+        'name' => $request->name,
+        'email' => $request->email,
         'password' => Hash::make('password'),
         'email_verified_at' => !blank($request->verified) ? now() : null
       )
