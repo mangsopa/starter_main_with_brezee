@@ -3,8 +3,9 @@
 
 @section('title', 'General Setting')
 
-@section('breadcrumb')
-<x-dashboard.breadcrumb title="General Setting" page="General Setting" active="Setting" route="{{ route('setting.index') }}" />
+@section('!breadcrumb')
+<x-dashboard.breadcrumb title="General Setting" page="General Setting" active="Setting"
+    route="{{ route('setting.index') }}" />
 @endsection
 
 @section('content')
@@ -23,8 +24,9 @@
             <div class="mb-3">
                 <label for="role" class="form-label">Default User Role</label>
                 <select class="form-select mb-3" aria-label="Select User Role" data-choices name="role">
-                    @foreach ($roles as $role)
-                    <option @selected($role->name == $data->role) value="{{ $role->name }}">{{ $role->name }}</option>
+                    @foreach($roles as $role)
+                        <option @selected($role->name == $data->role) value="{{ $role->name }}">{{ $role->name }}
+                        </option>
                     @endforeach
                 </select>
             </div>

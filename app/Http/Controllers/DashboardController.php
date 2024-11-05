@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Cuti;
 
 class DashboardController extends Controller
 {
@@ -11,7 +12,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $cuti = Cuti::orderBy('tanggal_mulai', 'desc')->get();
+        return view('dashboard.index', compact('cuti'));
     }
 
     /**

@@ -13,7 +13,10 @@ class UserService
     return User::create(array_merge(
       $request->validated(),
       array(
-        'password' => Hash::make('password'),
+        'username' => $request->username,
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => md5('123456'),
         'email_verified_at' => !blank($request->verified) ? now() : null
       )
     ))?->assignRole(!blank($request->role) ? $request->role : array());

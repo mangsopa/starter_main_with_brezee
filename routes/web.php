@@ -1,16 +1,16 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HumanResourcesController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserManagementController;
-use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\MenuGroupController;
 use App\Http\Controllers\MenuItemController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\CutiController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -39,13 +39,18 @@ Route::group(['middleware' => ['web', 'auth', 'verified']], function () {
 
     Route::resource('menu', MenuGroupController::class)->only('index', 'store', 'update', 'destroy');
     Route::resource('menu.item', MenuItemController::class)->only('index', 'store', 'update', 'destroy');
+    Route::resource('cuti', CutiController::class)->only('index');
 
     Route::prefix('humanresources')->group(function () {
         Route::resource('employee', HumanResourcesController::class)->only('index', 'update');
     });
 
+    Route::prefix('user')->group(function () {
+        Route::resource('profile', UserProfileController::class)->only('index');
+    });
+
     // Route::prefix('employee')->group(function () {
-    //     // Route::resource('profile', UserProfileController::class)->only('index');
+        Route::resource('profile', UserProfileController::class)->only('index');
 
     //     Route::resource('employee', HumanResourcesController::class)->only('index');
 

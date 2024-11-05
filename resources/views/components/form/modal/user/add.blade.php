@@ -13,8 +13,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Role Name"
-                            name="name">
+                        <input type="text" class="form-control" id="name" placeholder="Role Name" name="name">
                         <x-form.validation.error name="name" />
                     </div>
 
@@ -26,15 +25,21 @@
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Guard Name"
-                            name="email">
+                        <input type="email" class="form-control" id="email" placeholder="Guard Name" name="email">
                         <x-form.validation.error name="email" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Email</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password"
+                            name="password">
+                        <x-form.validation.error name="password" />
                     </div>
 
                     <div class="mb-3">
                         <label for="role" class="form-label">Role Name</label>
                         <select class="form-control" id="role" name="role" data-choices data-choices-removeItem>
-                            @foreach ($roles as $role)
+                            @foreach($roles as $role)
                                 <option value="{{ $role->name }}">{{ $role->name }}</option>
                             @endforeach
                         </select>
@@ -45,9 +50,9 @@
                         <div class="form-check form-switch form-switch-right form-switch-md">
                             <label for="verified" class="form-label">Verified</label>
                             <input class="form-check-input code-switcher" type="checkbox" id="tables-small-showcode"
-                                name="verified" value="1">
+                                name="verified">
                         </div>
-                        <x-form.validation.error name="verified" />
+                        <x-form.validation.error name="email_verified_at" />
                     </div>
 
                 </div>

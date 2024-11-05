@@ -19,12 +19,16 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // protected $guarded = [];
+
     protected $fillable = [
+        'register',
         'username',
         'name',
         'email',
         'password',
         'email_verified_at',
+        'statuskerja',
     ];
 
     /**
@@ -45,6 +49,22 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        // 'password' => 'hashed',
     ];
+
+    public function setPasswordAttribute($value)
+    {
+        // Hash the password with MD5 before saving it
+        $this->attributes['password'] = md5($value);
+    }
+
+    /**
+     * Check if the password is stored in MD5 format.
+     *
+     * @return bool
+     */
+    public function isPasswordMd5()
+    {
+        return preg_match('/^[a-f0-9]{32}$/', $this->password) === 1;
+    }
 }

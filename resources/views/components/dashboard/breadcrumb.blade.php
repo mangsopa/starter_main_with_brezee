@@ -7,5 +7,5 @@
             <li class="breadcrumb-item active">{{ $active }}</li>
         </ol>
     </div>
-
 </div>
+
